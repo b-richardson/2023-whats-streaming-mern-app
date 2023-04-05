@@ -50,10 +50,15 @@ What you'll need:
 ## Example.env
 
 MONGODB_URL="your-mongo-connection-url-here"
+
 PORT=5000
+
 TOKEN_SECRET="your-token-secret"
+
 TMDB_BASE_URL=https://api.themoviedb.org/3/
+
 TMDB_KEY=
+
 ## Run Locally
 
 Clone the project
