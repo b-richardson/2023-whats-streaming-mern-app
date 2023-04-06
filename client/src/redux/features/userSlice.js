@@ -16,7 +16,7 @@ export const userSlice = createSlice({
 
       state.user = action.payload;
     },
-    setListFavorites: (state, action) => {
+    setFavorites: (state, action) => {
       state.listFavorites = action.payload;
     },
     removeFavorite: (state, action) => {
@@ -31,7 +31,7 @@ export const userSlice = createSlice({
 
 export const {
   setUser,
-  setListFavorites,
+  setFavorites,
   addFavorite,
   removeFavorite
 } = userSlice.actions;
