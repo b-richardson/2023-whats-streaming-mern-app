@@ -71,18 +71,18 @@ const Topbar = () => {
               <Box sx={{ marginRight: "30px" }}>
                 <Logo />
               </Box>
-              {menuConfigs.main.map((item, index) => (
+              {menuConfigs.main.map((menuOption, index) => (
                 <Button
                   key={index}
                   sx={{
-                    color: appState.includes(item.state) ? "primary.contrastText" : "inherit",
+                    color: appState.includes(menuOption.state) ? "primary.contrastText" : "inherit",
                     mr: 2
                   }}
                   component={Link}
-                  to={item.path}
-                  variant={appState.includes(item.state) ? "contained" : "text"}
+                  to={menuOption.path}
+                  variant={appState.includes(menuOption.state) ? "contained" : "text"}
                 >
-                  {item.display}
+                  {menuOption.display}
                 </Button>
               ))}
               <IconButton

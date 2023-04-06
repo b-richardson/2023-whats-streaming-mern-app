@@ -4,15 +4,16 @@ import tmdbConfigs from "../../api/configs/tmdb.configs";
 import NavigationSwiper from "./NavigationSwiper";
 
 const BackdropSlide = ({ backdrops }) => {
+  console.log("entered the backdropslide: ", backdrops)
   return (
     <NavigationSwiper>
-      {[...backdrops].splice(0, 10).map((item, index) => (
+      {[...backdrops].splice(0, 10).map((backdrop, index) => (
         <SwiperSlide key={index}>
           <Box sx={{
             paddingTop: "60%",
             backgroundPosition: "top",
             backgroundSize: "cover",
-            backgroundImage: `url(${tmdbConfigs.backdropPath(item.file_path)})`
+            backgroundImage: `url(${tmdbConfigs.backdropPath(backdrop.file_path)})`
           }} />
         </SwiperSlide>
       ))}
