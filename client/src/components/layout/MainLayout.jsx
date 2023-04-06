@@ -41,9 +41,9 @@ const MainLayout = () => {
 
   return (
     <>
-      {/* global loading */}
+      {/* loading animation */}
       <GlobalLoading />
-      {/* global loading */}
+      {/* loading animation */}
 
       {/* login modal */}
       <AuthModal />
