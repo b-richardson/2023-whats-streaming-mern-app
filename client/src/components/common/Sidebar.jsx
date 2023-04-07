@@ -1,6 +1,6 @@
 import { Drawer, List, ListItemButton, ListItemIcon, ListItemText, Stack, Toolbar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import menuConfigs from "../../configs/menu.configs";
 import Logo from "./Logo";
 import uiConfigs from "../../configs/ui.configs";
@@ -12,10 +12,9 @@ import { setThemeMode } from "../../redux/features/themeModeSlice";
 
 const Sidebar = ({ open, toggleSidebar }) => {
   const dispatch = useDispatch();
-
-  const { user } = useSelector((state) => state.user);
-  const { appState } = useSelector((state) => state.appState);
+  const location = useLocation();
   const { themeMode } = useSelector((state) => state.themeMode);
+  const { user } = useSelector((state) => state.user);
 
   const sidebarWidth = uiConfigs.size.sidebarWith;
 
@@ -35,15 +34,19 @@ const Sidebar = ({ open, toggleSidebar }) => {
         <Typography variant="h6" marginBottom="20px">MENU</Typography>
         {menuConfigs.main.map((item, index) => (
           <ListItemButton
+            component={Link}
             key={index}
+            onClick={() => toggleSidebar(false)}
+            selected={location.pathname === item.path}
             sx={{
               borderRadius: "10px",
               marginY: 1,
-              backgroundColor: appState.includes(item.state) ? "primary.main" : "unset"
+              backgroundColor: "unset",
+              "&.Mui-selected": {
+                backgroundColor: "primary.main"
+              }
             }}
-            component={Link}
             to={item.path}
-            onClick={() => toggleSidebar(false)}
           >
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText disableTypography primary={<Typography textTransform="uppercase">
@@ -56,15 +59,19 @@ const Sidebar = ({ open, toggleSidebar }) => {
           <Typography variant="h6" marginBottom="20px">PERSONAL</Typography>
           {menuConfigs.user.map((item, index) => (
             <ListItemButton
+              component={Link}
               key={index}
+              onClick={() => toggleSidebar(false)}
+              selected={location.pathname === item.path}
               sx={{
                 borderRadius: "10px",
                 marginY: 1,
-                backgroundColor: appState.includes(item.state) ? "primary.main" : "unset"
+                backgroundColor: "unset",
+                "&.Mui-selected": {
+                  backgroundColor: "primary.main"
+                }
               }}
-              component={Link}
               to={item.path}
-              onClick={() => toggleSidebar(false)}
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText disableTypography primary={<Typography textTransform="uppercase">

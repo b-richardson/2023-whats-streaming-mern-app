@@ -9,96 +9,96 @@ import LockResetOutlinedIcon from "@mui/icons-material/LockResetOutlined";
 const main = [
   {
     display: "home",
-    path: "/",
     icon: <HomeOutlinedIcon />,
+    path: "/",
     state: "home"
   },
   {
     display: "movies",
-    path: "/movie",
     icon: <SlideshowOutlinedIcon />,
+    path: "/movie",
     state: "movie"
   },
   {
     display: "tv series",
-    path: "/tv",
     icon: <LiveTvOutlinedIcon />,
+    path: "/tv",
     state: "tv"
   },
   {
     display: "search",
-    path: "/search",
     icon: <SearchOutlinedIcon />,
+    path: "/search",
     state: "search"
-  }
-];
-
-const user = [
-  {
-    display: "favorites",
-    path: "/favorites",
-    icon: <FavoriteBorderOutlinedIcon />,
-    state: "favorite"
-  },
-  {
-    display: "reviews",
-    path: "/reviews",
-    icon: <RateReviewOutlinedIcon />,
-    state: "reviews"
-  },
-  {
-    display: "password update",
-    path: "/password-update",
-    icon: <LockResetOutlinedIcon />,
-    state: "password.update"
   }
 ];
 
 const provider = [
   {
     display: "netflix",
-    path: "/",
     icon: <SlideshowOutlinedIcon />,
+    path: "/",
     state: "favorite"
   },
   {
     display: "disney+",
-    path: "/",
     icon: <SlideshowOutlinedIcon />,
+    path: "/",
     state: "reviews"
   },
   {
     display: "hbo max",
-    path: "/",
     icon: <SlideshowOutlinedIcon />,
+    path: "/",
     state: "password.update"
   },
   {
     display: "prime video",
-    path: "/",
     icon: <SlideshowOutlinedIcon />,
+    path: "/",
     state: "password.update"
   },
   {
     display: "apple tv+",
-    path: "/",
     icon: <SlideshowOutlinedIcon />,
+    path: "/",
     state: "password.update"
   },
   {
     display: "hulu",
-    path: "/",
     icon: <SlideshowOutlinedIcon />,
+    path: "/",
     state: "password.update"
   },
   {
     display: "crunchyroll",
-    path: "/",
     icon: <SlideshowOutlinedIcon />,
+    path: "/",
     state: "password.update"
   },
 ];
 
-const menuConfigs = { main, user, provider };
+const user = [
+  {
+    display: "favorites",
+    icon: <FavoriteBorderOutlinedIcon />,
+    path: "/favorites",
+    state: "favorite"
+  },
+  {
+    display: "reviews",
+    icon: <RateReviewOutlinedIcon />,
+    path: "/reviews",
+    state: "reviews"
+  },
+  {
+    display: "password update",
+    icon: <LockResetOutlinedIcon />,
+    path: "/password-update",
+    state: "password.update"
+  }
+];
+
+const menuConfigs = { main, provider, user };
 
 export default menuConfigs;
