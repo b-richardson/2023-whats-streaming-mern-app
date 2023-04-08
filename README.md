@@ -27,7 +27,8 @@ Introducing "What's Streaming?" - your one-stop-shop for finding the latest and 
 
 ## Authors
 
-- [@b-richardson](https://www.github.com/b-richardson)
+- Brian Richardosn [@b-richardson](https://www.github.com/b-richardson)
+- Oliver De La Via [@odelavia](https://www.github.com/odelavia)
 
 
 ## Deployment
