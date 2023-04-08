@@ -33,42 +33,42 @@ const Sidebar = ({ open, toggleSidebar }) => {
       </Toolbar>
       <List sx={{ paddingX: "30px" }}>
         <Typography variant="h6" marginBottom="20px">MENU</Typography>
-        {menuConfigs.main.map((item, index) => (
+        {menuConfigs.main.map((menuOption, index) => (
           <ListItemButton
             key={index}
             sx={{
               borderRadius: "10px",
               marginY: 1,
-              backgroundColor: appState.includes(item.state) ? "primary.main" : "unset"
+              backgroundColor: appState.includes(menuOption.state) ? "primary.main" : "unset"
             }}
             component={Link}
-            to={item.path}
+            to={menuOption.path}
             onClick={() => toggleSidebar(false)}
           >
-            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemIcon>{menuOption.icon}</ListItemIcon>
             <ListItemText disableTypography primary={<Typography textTransform="uppercase">
-              {item.display}
+              {menuOption.display}
             </Typography>} />
           </ListItemButton>
         ))}
 
         {user && (<>
           <Typography variant="h6" marginBottom="20px">PERSONAL</Typography>
-          {menuConfigs.user.map((item, index) => (
+          {menuConfigs.user.map((menuOption, index) => (
             <ListItemButton
               key={index}
               sx={{
                 borderRadius: "10px",
                 marginY: 1,
-                backgroundColor: appState.includes(item.state) ? "primary.main" : "unset"
+                backgroundColor: appState.includes(menuOption.state) ? "primary.main" : "unset"
               }}
               component={Link}
-              to={item.path}
+              to={menuOption.path}
               onClick={() => toggleSidebar(false)}
             >
-              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemIcon>{menuOption.icon}</ListItemIcon>
               <ListItemText disableTypography primary={<Typography textTransform="uppercase">
-                {item.display}
+                {menuOption.display}
               </Typography>} />
             </ListItemButton>
           ))}

@@ -17,16 +17,17 @@ const Footer = () => {
         >
           <Logo />
           <Box>
-            {menuConfigs.main.map((item, index) => (
+            {menuConfigs.main.map((menuOption, index) => {
+              return (
               <Button
                 key={index}
                 sx={{ color: "inherit" }}
                 component={Link}
-                to={item.path}
+                to={menuOption.path}
               >
-                {item.display}
+                {menuOption.display}
               </Button>
-            ))}
+            )})}
           </Box>
         </Stack>
       </Paper>

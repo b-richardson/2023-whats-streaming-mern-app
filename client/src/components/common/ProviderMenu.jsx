@@ -34,16 +34,16 @@ const ProviderMenu = () => {
             onClose={() => setAnchorEl(null)}
             PaperProps={{ sx: { padding: 0 } }}
           >
-            {menuConfigs.provider.map((item, index) => (
+            {menuConfigs.provider.map((menuOption, index) => (
               <ListItemButton
                 component={Link}
-                to={item.path}
+                to={menuOption.path}
                 key={index}
                 onClick={() => setAnchorEl(null)}
               >
-                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemIcon>{menuOption.icon}</ListItemIcon>
                 <ListItemText disableTypography primary={
-                  <Typography textTransform="uppercase">{item.display}</Typography>
+                  <Typography textTransform="uppercase">{menuOption.display}</Typography>
                 } />
               </ListItemButton>
             ))}
