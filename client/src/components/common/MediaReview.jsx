@@ -138,9 +138,9 @@ const MediaReview = ({ reviews, media, mediaType }) => {
     <>
       <Container header={`Reviews (${reviewCount})`}>
         <Stack spacing={4} marginBottom={2}>
-          {filteredReviews.map((item) => (
-            <Box key={item.id}>
-              <ReviewItem review={item} onRemoved={onRemoved} />
+          {filteredReviews.map((review) => (
+            <Box key={review.id}>
+              <ReviewItem review={review} onRemoved={onRemoved} />
               <Divider sx={{
                 display: { xs: "block", md: "none" }
               }} />

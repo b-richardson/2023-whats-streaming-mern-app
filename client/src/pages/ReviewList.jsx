@@ -102,6 +102,13 @@ const ReviewList = () => {
 
   const skip = 2;
 
+  // NOTE: We add dispatch as a dependency because the dispatch function
+  // reference will be stable as long as the same store instance is being
+  // passed to the <Provider>. Normally, that store instance never changes in
+  // an application. However, the React hooks lint rules do not know that
+  // dispatch should be stable, and will warn that the dispatch variable should
+  // be added to dependency arrays for useEffect and useCallback. The simplest
+  // solution is to do just that. See https://react-redux.js.org/api/hooks.
   useEffect(() => {
     const getReviews = async () => {
       dispatch(setGlobalLoading(true));
@@ -117,7 +124,7 @@ const ReviewList = () => {
     };
 
     getReviews();
-  }, []);
+  }, [dispatch]);
 
   const onLoadMore = () => {
     setFilteredReviews([...filteredReviews, ...[...reviews].splice(page * skip, skip)]);
@@ -137,9 +144,9 @@ const ReviewList = () => {
     <Box sx={{ ...uiConfigs.style.mainContent }}>
       <Container header={`Your reviews (${count})`}>
         <Stack spacing={2}>
-          {filteredReviews.map((item) => (
-            <Box key={item.id}>
-              <ReviewItem review={item} onRemoved={onRemoved} />
+          {filteredReviews.map((review) => (
+            <Box key={review.id}>
+              <ReviewItem review={review} onRemoved={onRemoved} />
               <Divider sx={{
                 display: { xs: "block", md: "none" }
               }} />

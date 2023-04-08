@@ -72,17 +72,21 @@ const MediaSearch = () => {
             justifyContent="center"
             sx={{ width: "100%" }}
           >
-            {mediaTypes.map((item, index) => (
+            {
+              // NOTE: We use contentType instead of mediaType for the current
+              // element being processed below because mediaType is already
+              // taken.
+              mediaTypes.map((contentType, index) => (
               <Button
                 size="large"
                 key={index}
-                variant={mediaType === item ? "contained" : "text"}
+                variant={mediaType === contentType ? "contained" : "text"}
                 sx={{
-                  color: mediaType === item ? "primary.contrastText" : "text.primary"
+                  color: mediaType === contentType ? "primary.contrastText" : "text.primary"
                 }}
-                onClick={() => onCategoryChange(item)}
+                onClick={() => onCategoryChange(contentType)}
               >
-                {item}
+                {contentType}
               </Button>
             ))}
           </Stack>

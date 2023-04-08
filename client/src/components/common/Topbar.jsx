@@ -70,11 +70,11 @@ const Topbar = () => {
               <Box sx={{ marginRight: "30px" }}>
                 <Logo />
               </Box>
-              {menuConfigs.main.map((item, index) => (
+              {menuConfigs.main.map((menuOption, index) => (
                 <Button
                   component={Link}
                   key={index}
-                  selected={location.pathname === item.path}
+                  selected={location.pathname === menuOption.path}
                   sx={{
                     color: "inherit",
                     mr: 2,
@@ -82,10 +82,10 @@ const Topbar = () => {
                       color: "primary.contrastText"
                     }
                   }}
-                  to={item.path}
-                  variant={location.pathname === item.path ? "contained" : "text"}
+                  to={menuOption.path}
+                  variant={location.pathname === menuOption.path ? "contained" : "text"}
                 >
-                  {item.display}
+                  {menuOption.display}
                 </Button>
               ))}
               <IconButton

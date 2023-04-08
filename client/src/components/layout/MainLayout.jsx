@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import userApi from "../../api/modules/user.api";
 import favoriteApi from "../../api/modules/favorite.api";
-import { setListFavorites, setUser } from "../../redux/features/userSlice";
+import { setFavorites, setUser } from "../../redux/features/userSlice";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -31,19 +31,19 @@ const MainLayout = () => {
     const getFavorites = async () => {
       const { response, err } = await favoriteApi.getList();
 
-      if (response) dispatch(setListFavorites(response));
+      if (response) dispatch(setFavorites(response));
       if (err) toast.error(err.message);
     };
 
     if (user) getFavorites();
-    if (!user) dispatch(setListFavorites([]));
+    if (!user) dispatch(setFavorites([]));
   }, [user, dispatch]);
 
   return (
     <>
-      {/* global loading */}
+      {/* loading animation */}
       <GlobalLoading />
-      {/* global loading */}
+      {/* loading animation */}
 
       {/* login modal */}
       <AuthModal />

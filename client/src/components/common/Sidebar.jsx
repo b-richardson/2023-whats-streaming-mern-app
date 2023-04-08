@@ -32,7 +32,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
       </Toolbar>
       <List sx={{ paddingX: "30px" }}>
         <Typography variant="h6" marginBottom="20px">MENU</Typography>
-        {menuConfigs.main.map((item, index) => (
+        {menuConfigs.main.map((menuOption, index) => (
           <ListItemButton
             component={Link}
             key={index}
@@ -46,18 +46,18 @@ const Sidebar = ({ open, toggleSidebar }) => {
                 backgroundColor: "primary.main"
               }
             }}
-            to={item.path}
+            to={menuOption.path}
           >
-            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemIcon>{menuOption.icon}</ListItemIcon>
             <ListItemText disableTypography primary={<Typography textTransform="uppercase">
-              {item.display}
+              {menuOption.display}
             </Typography>} />
           </ListItemButton>
         ))}
 
         {user && (<>
           <Typography variant="h6" marginBottom="20px">PERSONAL</Typography>
-          {menuConfigs.user.map((item, index) => (
+          {menuConfigs.user.map((menuOption, index) => (
             <ListItemButton
               component={Link}
               key={index}
@@ -71,11 +71,11 @@ const Sidebar = ({ open, toggleSidebar }) => {
                   backgroundColor: "primary.main"
                 }
               }}
-              to={item.path}
+              to={menuOption.path}
             >
-              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemIcon>{menuOption.icon}</ListItemIcon>
               <ListItemText disableTypography primary={<Typography textTransform="uppercase">
-                {item.display}
+                {menuOption.display}
               </Typography>} />
             </ListItemButton>
           ))}
