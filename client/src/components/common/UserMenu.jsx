@@ -7,11 +7,9 @@ import menuConfigs from "../../configs/menu.configs";
 import { setUser } from "../../redux/features/userSlice";
 
 const UserMenu = () => {
-  const { user } = useSelector((state) => state.user);
-
-  const dispatch = useDispatch();
-
   const [anchorEl, setAnchorEl] = useState(null);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
 
   const toggleMenu = (e) => setAnchorEl(e.currentTarget);
 
@@ -20,17 +18,17 @@ const UserMenu = () => {
       {user && (
         <>
           <Typography
-            variant="h6"
-            sx={{ cursor: "pointer", userSelect: "none" }}
             onClick={toggleMenu}
+            sx={{ cursor: "pointer", userSelect: "none" }}
+            variant="h6"
           >
             {user.displayName}
           </Typography>
           <Menu
-            open={Boolean(anchorEl)}
+            PaperProps={{ sx: { padding: 0 } }}
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
-            PaperProps={{ sx: { padding: 0 } }}
+            open={Boolean(anchorEl)}
           >
             {menuConfigs.user.map((menuOption, index) => (
               <ListItemButton
@@ -46,8 +44,8 @@ const UserMenu = () => {
               </ListItemButton>
             ))}
             <ListItemButton
-              sx={{ borderRadius: "10px" }}
               onClick={() => dispatch(setUser(null))}
+              sx={{ borderRadius: "10px" }}
             >
               <ListItemIcon><LogoutOutlinedIcon /></ListItemIcon>
               <ListItemText disableTypography primary={

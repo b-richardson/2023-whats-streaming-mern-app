@@ -4,7 +4,7 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
 import { AppBar, Box, Button, IconButton, Stack, Toolbar, useScrollTrigger } from "@mui/material";
 import { cloneElement, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import menuConfigs from "../../configs/menu.configs";
 import { themeModes } from "../../configs/theme.configs";
 import { setAuthModalOpen } from "../../redux/features/authModalSlice";
@@ -19,25 +19,24 @@ const ScrollAppBar = ({ children, window }) => {
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 50,
-    target: window ? window() : undefined
+    target: window ? window() : undefined,
+    threshold: 50
   });
 
   return cloneElement(children, {
     sx: {
-      color: trigger ? "text.primary" : themeMode === themeModes.dark ? "primary.contrastText" : "text.primary",
-      backgroundColor: trigger ? "background.paper" : themeMode === themeModes.dark ? "transparent" : "background.paper"
+      backgroundColor: trigger ? "background.paper" : themeMode === themeModes.dark ? "transparent" : "background.paper",
+      color: trigger ? "text.primary" : themeMode === themeModes.dark ? "primary.contrastText" : "text.primary"
     }
   });
 };
+
 const Topbar = () => {
-  const { user } = useSelector((state) => state.user);
-  const { appState } = useSelector((state) => state.appState);
-  const { themeMode } = useSelector((state) => state.themeMode);
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const dispatch = useDispatch();
+  const location = useLocation();
+  const { themeMode } = useSelector((state) => state.themeMode);
+  const { user } = useSelector((state) => state.user);
 
   const onSwithTheme = () => {
     const theme = themeMode === themeModes.dark ? themeModes.light : themeModes.dark;
@@ -55,8 +54,8 @@ const Topbar = () => {
             <Stack direction="row" spacing={1} alignItems="center">
               <IconButton
                 color="inherit"
-                sx={{ mr: 2, display: { md: "none" } }}
                 onClick={toggleSidebar}
+                sx={{ mr: 2, display: { md: "none" } }}
               >
                 <MenuIcon />
               </IconButton>
@@ -73,21 +72,25 @@ const Topbar = () => {
               </Box>
               {menuConfigs.main.map((menuOption, index) => (
                 <Button
-                  key={index}
-                  sx={{
-                    color: appState.includes(menuOption.state) ? "primary.contrastText" : "inherit",
-                    mr: 2
-                  }}
                   component={Link}
+                  key={index}
+                  selected={location.pathname === menuOption.path}
+                  sx={{
+                    color: "inherit",
+                    mr: 2,
+                    "&.Mui-selected": {
+                      color: "primary.contrastText"
+                    }
+                  }}
                   to={menuOption.path}
-                  variant={appState.includes(menuOption.state) ? "contained" : "text"}
+                  variant={location.pathname === menuOption.path ? "contained" : "text"}
                 >
                   {menuOption.display}
                 </Button>
               ))}
               <IconButton
-                sx={{ color: "inherit" }}
                 onClick={onSwithTheme}
+                sx={{ color: "inherit" }}
               >
                 {themeMode === themeModes.dark && <DarkModeOutlinedIcon />}
                 {themeMode === themeModes.light && <WbSunnyOutlinedIcon />}
@@ -99,8 +102,8 @@ const Topbar = () => {
             {/* user menu */}
             <Stack spacing={3} direction="row" alignItems="center">
               {!user && <Button
-                variant="contained"
                 onClick={() => dispatch(setAuthModalOpen(true))}
+                variant="contained"
               >
                 sign in
               </Button>}
