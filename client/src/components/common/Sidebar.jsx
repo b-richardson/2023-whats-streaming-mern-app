@@ -37,7 +37,8 @@ const Sidebar = ({ open, toggleSidebar }) => {
             component={Link}
             key={index}
             onClick={() => toggleSidebar(false)}
-            selected={location.pathname === item.path}
+//             Bug with item not being defined. Commenting out until able to trouble shoot
+//             selected={location.pathname === item.path}
             sx={{
               borderRadius: "10px",
               marginY: 1,
@@ -62,7 +63,8 @@ const Sidebar = ({ open, toggleSidebar }) => {
               component={Link}
               key={index}
               onClick={() => toggleSidebar(false)}
-              selected={location.pathname === item.path}
+//               Bug with item not being defined. Commenting out until able to trouble shoot
+//               selected={location.pathname === item.path}
               sx={{
                 borderRadius: "10px",
                 marginY: 1,
