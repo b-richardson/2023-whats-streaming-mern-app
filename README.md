@@ -3,6 +3,8 @@
 
 What's Streaming? is an application that allows users to view content options available on their favorite streaming platforms!
 
+## Demo Link
+https://whatsstreaming-demo-front-end.onrender.com
 
 ## Introduction
 
