@@ -2,9 +2,21 @@ import axiosClient from "../axios/axios.client.js";
 import tmdbEndpoints from "./tmdb.endpoints.js";
 
 const tmdbApi = {
-  mediaList: async ({ mediaType, mediaCategory, page }) => await axiosClient.get(
-    tmdbEndpoints.mediaList({ mediaType, mediaCategory, page })
-  ),
+  mediaList: async ({ provider, genre, type, category, page }) => {
+    const response = await axiosClient.get(
+      tmdbEndpoints.mediaList({ provider, genre, type, category, page })
+    )
+
+    return response
+  },
+  mediaListForAllProviders: async ({ mediaCategory, page }) => {
+    const response = await axiosClient.get(
+      tmdbEndpoints.mediaListForAllProviders({ mediaCategory, page })
+    )
+    console.log(response)
+
+    return response
+  },
   mediaDetail: async ({ mediaType, mediaId }) => await axiosClient.get(
     tmdbEndpoints.mediaDetail({ mediaType, mediaId })
   ),

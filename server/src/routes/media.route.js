@@ -9,6 +9,8 @@ router.get("/genres", mediaController.getGenres);
 
 router.get("/detail/:mediaId", mediaController.getDetail);
 
-router.get("/:mediaCategory", mediaController.getList);
+// router.get("/:mediaCategory", mediaController.getList);
+
+router.get("/:mediaProvider/media-types/:mediaType/:mediaCategory", mediaController.getList);
 
 export default router;

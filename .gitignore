@@ -1,2 +1,5 @@
 /.gitattributes
 /README.md
+.yarn/
+.DS_Store
+.yarnrc.yml

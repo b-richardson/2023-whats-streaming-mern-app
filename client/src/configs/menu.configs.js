@@ -37,44 +37,44 @@ const provider = [
   {
     display: "netflix",
     icon: <SlideshowOutlinedIcon />,
-    path: "/",
+    path: "/providers/netflix/media-types/all",
     state: "favorite"
   },
   {
     display: "disney+",
     icon: <SlideshowOutlinedIcon />,
-    path: "/",
-    state: "reviews"
+    path: "/providers/disney-plus/media-types/all",
+    state: "favorite"
   },
   {
     display: "hbo max",
     icon: <SlideshowOutlinedIcon />,
-    path: "/",
-    state: "password.update"
+    path: "/providers/hbo-max/media-types/all",
+    state: "favorite"
   },
   {
     display: "prime video",
     icon: <SlideshowOutlinedIcon />,
-    path: "/",
-    state: "password.update"
+    path: "/providers/prime-video/media-types/all",
+    state: "favorite"
   },
   {
     display: "apple tv+",
     icon: <SlideshowOutlinedIcon />,
-    path: "/",
-    state: "password.update"
+    path: "/providers/apple-tv/media-types/all",
+    state: "favorite"
   },
   {
     display: "hulu",
     icon: <SlideshowOutlinedIcon />,
-    path: "/",
-    state: "password.update"
+    path: "/providers/hulu/media-types/all",
+    state: "favorite"
   },
   {
     display: "crunchyroll",
     icon: <SlideshowOutlinedIcon />,
-    path: "/",
-    state: "password.update"
+    path: "/providers/crunchy-roll/media-types/all",
+    state: "favorite"
   },
 ];
 

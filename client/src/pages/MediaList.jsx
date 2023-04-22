@@ -19,13 +19,15 @@ const MediaList = () => {
   const [medias, setMedias] = useState([]);
   const dispatch = useDispatch();
   const mediaCategories = useMemo(() => ["popular", "top_rated"], []);
-  const { mediaType } = useParams();
+  const { mediaType, mediaProvider } = useParams();
+  const prevMediaProvider = usePrevious(mediaProvider);
   const prevMediaType = usePrevious(mediaType);
 
   const categories = ["popular", "top rated"];
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    console.log("currCategory: ", mediaCategories[currCategory]);
   }, []);
 
   useEffect(() => {
@@ -35,6 +37,7 @@ const MediaList = () => {
       console.log('Getting Media')
 
       const { response, err } = await mediaApi.getList({
+        mediaProvider,
         mediaType,
         mediaCategory: mediaCategories[currCategory],
         page: currPage
@@ -45,6 +48,8 @@ const MediaList = () => {
 
       if (err) toast.error(err.message);
       if (response) {
+        console.log("response: ", response)
+
         if (currPage !== 1) setMedias(m => [...m, ...response.results]);
         else setMedias([...response.results]);
       }
@@ -61,6 +66,7 @@ const MediaList = () => {
     currPage,
     dispatch,
     mediaCategories,
+    mediaProvider,
     mediaType,
     prevMediaType
   ]);

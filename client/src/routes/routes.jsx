@@ -10,7 +10,8 @@ import ProtectedPage from "../components/common/ProtectedPage";
 
 export const routesGen = {
   home: "/",
-  mediaList: (type) => `/${type}`,
+  mediaList: (provider, type) => `/providers/${provider}/media-types/${type}`,
+  // mediaList: (type) => `/${type}`,
   mediaDetail: (type, id) => `/${type}/${id}`,
   mediaSearch: "/search",
   person: (id) => `/person/${id}`,
@@ -63,13 +64,17 @@ const routes = [
     state: "reviews"
   },
   {
+    path: "/providers/:mediaProvider/media-types/:mediaType",
+    element: <MediaList />
+  },
+  {
     path: "/:mediaType",
     element: <MediaList />
   },
   {
     path: "/:mediaType/:mediaId",
     element: <MediaDetail />
-  }
+  },
 ];
 
 export default routes;

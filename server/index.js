@@ -5,6 +5,10 @@ import http from "http";
 import mongoose from "mongoose";
 import "dotenv/config";
 import routes from "./src/routes/index.js";
+import { client } from "./src/redis/redis.client.js"
+// import { scheduleCacheRefresh } from "./src/cache/cache-refresh.js";
+
+await client.connect();
 
 const app = express();
 
@@ -15,7 +19,7 @@ app.use(cookieParser());
 
 app.use("/api/v1", routes);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 const server = http.createServer(app);
 
@@ -28,5 +32,8 @@ mongoose.connect(process.env.MONGODB_URL).then(() => {
   console.log({ err });
   process.exit(1);
 });
+
+// Call the function to schedule the cache refresh
+// scheduleCacheRefresh();
 
 //test

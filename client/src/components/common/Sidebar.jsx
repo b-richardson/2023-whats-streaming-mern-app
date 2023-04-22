@@ -37,7 +37,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
             component={Link}
             key={index}
             onClick={() => toggleSidebar(false)}
-            selected={location.pathname === item.path}
+            selected={location.pathname === menuOption.path}
             sx={{
               borderRadius: "10px",
               marginY: 1,
@@ -62,7 +62,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
               component={Link}
               key={index}
               onClick={() => toggleSidebar(false)}
-              selected={location.pathname === item.path}
+              selected={location.pathname === menuOption.path}
               sx={{
                 borderRadius: "10px",
                 marginY: 1,

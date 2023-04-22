@@ -20,6 +20,7 @@ const getUrl = (endpoint, params) => {
 // "provider_name": "Netflix",
 // "provider_id": 8
 const getNetflixUrl = (endpoint, params) => {
+  console.log("made it to the getNetflixUrl endpoint!: ", endpoint, params)
   const qs = new URLSearchParams(params);
   console.log( `${baseUrl}${endpoint}?api_key=${key}&language=en-US&${qs}&region=US`, 'Netflix')
 
@@ -102,4 +103,4 @@ const getCrunchyUrl = (endpoint, params) => {
 
 
 
-export default { getUrl, getNetflixUrl, getAppleUrl, getDisneyUrl, getPrimeUrl, getHuluUrl, getHBOUrl, getCrunchyUrl };
+export { getUrl, getNetflixUrl, getAppleUrl, getDisneyUrl, getPrimeUrl, getHuluUrl, getHBOUrl, getCrunchyUrl };

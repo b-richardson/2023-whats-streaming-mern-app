@@ -5,12 +5,13 @@ import AutoSwiper from "./AutoSwiper";
 import { toast } from "react-toastify";
 import MediaItem from "./MediaItem";
 
-const MediaSlide = ({ mediaType, mediaCategory }) => {
+const MediaSlide = ({ mediaProvider, mediaType, mediaCategory }) => {
   const [medias, setMedias] = useState([]);
 
   useEffect(() => {
     const getMedias = async () => {
       const { response, err } = await mediaApi.getList({
+        mediaProvider,
         mediaType,
         mediaCategory,
         page: 1
@@ -21,7 +22,7 @@ const MediaSlide = ({ mediaType, mediaCategory }) => {
     };
 
     getMedias();
-  }, [mediaType, mediaCategory]);
+  }, [mediaProvider, mediaType, mediaCategory]);
 
   return (
     <AutoSwiper>

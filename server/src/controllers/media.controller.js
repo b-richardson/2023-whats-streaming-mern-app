@@ -4,18 +4,25 @@ import userModel from "../models/user.model.js";
 import favoriteModel from "../models/favorite.model.js";
 import reviewModel from "../models/review.model.js";
 import tokenMiddlerware from "../middlewares/token.middleware.js";
+// import { filterMedia } from "../media/media-filtering.js";
+import { getFilteredMedia } from "../media/media-retrieval.js";
 
 const getList = async (req, res) => {
+  // console.log("inside media.controller: ", Object.keys(res.status(200).json()))
   try {
     const { page } = req.query;
-    
-    const { mediaType, mediaCategory } = req.params;
-    console.log(mediaType, mediaCategory);
+    // NOTE: mediaType can be movie or tv show, mediaCategory can be popular or top
+    // rated, mediaProvider can be streaming services like Netflix.
+    // const { mediaProvider, mediaCategory, mediaType } = req.params;
+    const { mediaProvider, mediaType, mediaCategory } = req.params;
+    console.log("media.controller params: ", mediaProvider, mediaType);
 
-    const response = await tmdbApi.mediaList({ mediaType, mediaCategory, page });
+    // const response = await tmdbApi.mediaList({ mediaType, mediaCategory, page });
+    const response = await getFilteredMedia({ provider: mediaProvider, type: mediaType, category: mediaCategory, page })
 
     return responseHandler.ok(res, response);
   } catch {
+    console.log("media.controller getList error: ")
     responseHandler.error(res);
   }
 };

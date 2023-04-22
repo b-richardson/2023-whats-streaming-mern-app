@@ -39,7 +39,7 @@ const ProviderMenu = () => {
                 component={Link}
                 to={menuOption.path}
                 key={index}
-                onClick={() => setAnchorEl(null)}
+                onClick={() => (setAnchorEl(null))}
               >
                 <ListItemIcon>{menuOption.icon}</ListItemIcon>
                 <ListItemText disableTypography primary={

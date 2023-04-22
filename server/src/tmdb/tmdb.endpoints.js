@@ -1,9 +1,43 @@
-import tmdbConfig from "./tmdb.config.js";
+import { getUrl, getNetflixUrl, getAppleUrl, getDisneyUrl, getPrimeUrl, getHuluUrl, getHBOUrl, getCrunchyUrl } from "./tmdb.config.js";
+
+const providerUrls = {
+  "all": getUrl,
+  "prime-video": getPrimeUrl,
+  "apple-tv": getAppleUrl,
+  "crunchy-roll": getCrunchyUrl,
+  "disney-plus": getDisneyUrl,
+  "hbo-max": getHBOUrl,
+  "hulu": getHuluUrl,
+  "netflix": getNetflixUrl,
+}
+
+const mediaTypes = ["tv shows", "movies"]
 
 const tmdbEndpoints = {
-  mediaList: ({ mediaType, mediaCategory, page }) => tmdbConfig.getUrl(
-    `${mediaType}/${mediaCategory}`, { page }
-  ),
+  mediaList: ({ provider, genre, type, category, page }) => {
+    if (provider !== "all") {
+      let getMediaUrl = providerUrls[provider]
+
+      return getMediaUrl(
+        // `providers/${provider}/media-types/${type}/${category}`, { page }
+        `${type}/${category}`, { page }
+        // `movie/${category}`, { page }
+        )
+    } 
+  },
+  mediaListForAllProviders: ({ mediaProvider, mediaType, mediaCategory, page }) => {
+    console.log("made it!");
+    let response;
+    
+    // providerUrls[mediaProvider]
+    providerUrls.map((providerUrl) => {
+      mediaTypes.map((type) => {
+        response += eval(`
+          ${providerUrl}("providers/${mediaProvider}/media-types/${type}/${mediaCategory}", { page })
+        `)
+      })
+    })
+  },
   mediaDetail: ({ mediaType, mediaId }) => tmdbConfig.getUrl(
     `${mediaType}/${mediaId}`
   ),
